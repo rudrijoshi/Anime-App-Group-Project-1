@@ -1,4 +1,5 @@
 var apiKey = "63c29c7383msh9695ca611a01d2ep102982jsn2de854c3525a"
+var apiHost = "10000-anime-quotes-with-pagination-support.p.rapidapi.com"
 var searchButtonEle = $("#search-button");
 var searchFieldEle = $("#search-field");
 
