@@ -12,7 +12,7 @@ async function getAnimeList() {
 }
 
 async function getAnimeQuote() {
-    var request = `https://10000-anime-quotes-with-pagination-support.p.rapidapi.com/rapidHandler/random?rapidapi-key=${apiKey}`;
+    var request = `https://cors-anywhere.herokuapp.com/https://10000-anime-quotes-with-pagination-support.p.rapidapi.com/rapidHandler/random?rapidapi-key=${apiKey}`;
     const response = await fetch(request);
     const data = await response.json();
     console.log(data);
