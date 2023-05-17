@@ -5,7 +5,9 @@ var searchFieldEle = document.getElementById("search-field");
 var quote = document.getElementById("quote-field")
 var searchHistoryEle = document.getElementById("search-history")
 
-
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 async function getAnimeList() {
     var request = `https://anime-db.p.rapidapi.com/anime?page=1&size=1&rapidapi-key=${apiKey}`;
@@ -76,7 +78,7 @@ function populateSearchHistory() {
 
         array.forEach((searchItem) => {
             const button = document.createElement('button')
-            button.textContent = searchItem
+            button.textContent = capitalizeFirstLetter(searchItem)
             button.addEventListener('click', ()=>{
                 executeSearch(searchItem)
             })
