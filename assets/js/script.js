@@ -5,6 +5,8 @@ var searchFieldEle = document.getElementById("search-field");
 var quote = document.getElementById("quote-field")
 
 
+
+
 async function getAnimeList() {
     var request = `https://anime-db.p.rapidapi.com/anime?page=1&size=1&rapidapi-key=${apiKey}`;
     const response = await fetch(request);
@@ -25,32 +27,44 @@ searchButtonEle.addEventListener("click", executeSearch)
 
 async function executeSearch() {
     console.log(searchFieldEle.value)
+    const animeSearchHistory = JSON.parse(localStorage.getItem('animeSearchHistory'))
+
+    if (animeSearchHistory) {
+        animeSearchHistory.push(searchFieldEle.value)
+        localStorage.setItem('animeSearchHistory', JSON.stringify(animeSearchHistory))
+    } else {
+        localStorage.setItem('animeSearchHistory', JSON.stringify([searchFieldEle.value]))
+
+    }
+
     const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': apiKey,
-          'X-RapidAPI-Host': 'anime-db.p.rapidapi.com'
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'anime-db.p.rapidapi.com'
         }
-      };
-      
-      const searchParams = new URLSearchParams({
+    };
+
+    const searchParams = new URLSearchParams({
         page: '1',
         size: '10',
         search: searchFieldEle.value,
         sortBy: 'ranking',
         sortOrder: 'asc'
-      });
-      
-      const url = `https://anime-db.p.rapidapi.com/anime?${searchParams}`;
-      
-      try {
+    });
+
+    const url = `https://anime-db.p.rapidapi.com/anime?${searchParams}`;
+
+    try {
         const response = await fetch(url, options);
         const data = await response.json();
         console.log(data);
-      } catch (error) {
+    } catch (error) {
         console.error(error);
-      }
+    }
 }
+
+
 
 
 
