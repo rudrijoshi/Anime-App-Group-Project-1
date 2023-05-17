@@ -3,7 +3,7 @@ var apiHost = "10000-anime-quotes-with-pagination-support.p.rapidapi.com"
 var searchButtonEle = document.getElementById("search-button");
 var searchFieldEle = document.getElementById("search-field");
 var quote = document.getElementById("quote-field")
-
+var searchHistoryEle = document.getElementById("search-history")
 
 
 
@@ -23,19 +23,14 @@ async function getAnimeQuote() {
     quote.textContent = ('"' + data.quote + '"' + " Anime: " + data.animename)
 }
 
-searchButtonEle.addEventListener("click", executeSearch)
+searchButtonEle.addEventListener("click", ()=>{
+    executeSearch(searchFieldEle.value)
+})
 
-async function executeSearch() {
-    console.log(searchFieldEle.value)
+async function executeSearch(searchValue) {
+   
     const animeSearchHistory = JSON.parse(localStorage.getItem('animeSearchHistory'))
 
-    if (animeSearchHistory) {
-        animeSearchHistory.push(searchFieldEle.value)
-        localStorage.setItem('animeSearchHistory', JSON.stringify(animeSearchHistory))
-    } else {
-        localStorage.setItem('animeSearchHistory', JSON.stringify([searchFieldEle.value]))
-
-    }
 
     const options = {
         method: 'GET',
@@ -48,7 +43,7 @@ async function executeSearch() {
     const searchParams = new URLSearchParams({
         page: '1',
         size: '10',
-        search: searchFieldEle.value,
+        search: searchValue,
         sortBy: 'ranking',
         sortOrder: 'asc'
     });
@@ -59,14 +54,39 @@ async function executeSearch() {
         const response = await fetch(url, options);
         const data = await response.json();
         console.log(data);
+        if (animeSearchHistory) {
+            if (!animeSearchHistory.includes(searchValue)) {
+                animeSearchHistory.push(searchValue)
+                localStorage.setItem('animeSearchHistory', JSON.stringify(animeSearchHistory))
+            }
+        } else {
+            localStorage.setItem('animeSearchHistory', JSON.stringify([searchValue]))
+        }
+        populateSearchHistory()
     } catch (error) {
         console.error(error);
     }
 }
 
 
+function populateSearchHistory() {
+    if (localStorage.getItem('animeSearchHistory')) {
+        searchHistoryEle.innerHTML = ''
+        const array = JSON.parse(localStorage.getItem('animeSearchHistory'))
+
+        array.forEach((searchItem) => {
+            const button = document.createElement('button')
+            button.textContent = searchItem
+            button.addEventListener('click', ()=>{
+                executeSearch(searchItem)
+            })
+            searchHistoryEle.append(button)
+        })
+    }
+}
 
 
 
+populateSearchHistory()
 getAnimeList();
 getAnimeQuote();
