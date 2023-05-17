@@ -15,7 +15,7 @@ async function getAnimeQuote() {
     const response = await fetch(request);
     const data = await response.json();
     console.log(data);
-    $("#quote-field").text(data.quote)
+    $("#quote-field").text('"' + data.quote + '"' + " Anime: " + data.animename)
 }
 
 
