@@ -25,6 +25,13 @@ async function getAnimeQuote() {
     quote.textContent = ('"' + data.quote + '"' + " Anime: " + data.animename)
 }
 
+searchFieldEle.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      executeSearch(searchFieldEle.value)
+    }
+  });
+
 searchButtonEle.addEventListener("click", () => {
     executeSearch(searchFieldEle.value)
 })
@@ -75,6 +82,8 @@ async function executeSearch(searchValue) {
         } else {
             localStorage.setItem('animeSearchHistory', JSON.stringify([searchValue]))
         }
+
+        searchFieldEle.value = "";
 
         var mainResults = document.getElementById('main-body');
         mainResults.innerHTML = "";
