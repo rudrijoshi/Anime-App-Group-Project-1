@@ -14,25 +14,6 @@ async function getAnimeList() {
     const response = await fetch(request);
     const data = await response.json();
     console.log(data);
-    var titleEl = document.querySelector('.title');
-    titleEl.textContent =  data.data[0].title;
-
-    var episodeEl = document.querySelector('.subtitle');
-    episodeEl.textContent = "Number of episodes" + " " + data.data[0].episodes;
-
-    var bodyEl = document.querySelector("#result-input");
-    bodyEl.textContent = data.data[0].genres[0];
-
-    var imageEl = document.querySelector("#result-image");
-    imageEl.setAttribute("src", data.data[0].image);
-    
-    var descrEl = document.querySelector('#desc');
-    descrEl.innerHTML = data.data[0].synopsis;
-
-    var sentences = data.data[0].synopsis.split(/[.]/);
-    var limitedSynopsis = sentences.slice(0,3).join('. ');
-    descrEl.innerHTML = limitedSynopsis + ".Read More...";
-
 }
 
 async function getAnimeQuote() {
@@ -44,12 +25,12 @@ async function getAnimeQuote() {
     quote.textContent = ('"' + data.quote + '"' + " Anime: " + data.animename)
 }
 
-searchButtonEle.addEventListener("click", ()=>{
+searchButtonEle.addEventListener("click", () => {
     executeSearch(searchFieldEle.value)
 })
 
 async function executeSearch(searchValue) {
-   
+
     const animeSearchHistory = JSON.parse(localStorage.getItem('animeSearchHistory'))
 
 
@@ -83,10 +64,30 @@ async function executeSearch(searchValue) {
         } else {
             localStorage.setItem('animeSearchHistory', JSON.stringify([searchValue]))
         }
+        var titleEl = document.querySelector('.title');
+        titleEl.textContent = data.data[0].title;
+
+        var episodeEl = document.querySelector('.subtitle');
+        episodeEl.textContent = "Number of episodes" + " " + data.data[0].episodes;
+
+        var bodyEl = document.querySelector("#result-input");
+        bodyEl.textContent = data.data[0].genres[0];
+
+        var imageEl = document.querySelector("#result-image");
+        imageEl.setAttribute("src", data.data[0].image);
+
+        var descrEl = document.querySelector('#desc');
+        descrEl.innerHTML = data.data[0].synopsis;
+
+        var sentences = data.data[0].synopsis.split(/[.]/);
+        var limitedSynopsis = sentences.slice(0, 3).join('. ');
+        descrEl.innerHTML = limitedSynopsis + ".Read More...";
         populateSearchHistory()
     } catch (error) {
         console.error(error);
     }
+
+
 }
 
 
@@ -98,7 +99,7 @@ function populateSearchHistory() {
         array.forEach((searchItem) => {
             const button = document.createElement('button')
             button.textContent = capitalizeFirstLetter(searchItem)
-            button.addEventListener('click', ()=>{
+            button.addEventListener('click', () => {
                 executeSearch(searchItem)
             })
             searchHistoryEle.append(button)
