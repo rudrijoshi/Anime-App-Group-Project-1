@@ -77,6 +77,7 @@ async function executeSearch(searchValue) {
         }
 
         var mainResults = document.getElementById('main-body');
+        mainResults.innerHTML = "";
        
 
         var resultsArea = document.createElement("div")
@@ -106,6 +107,8 @@ async function executeSearch(searchValue) {
 
         var footer = document.createElement("footer");
         footer.className = "card-footer";
+        var footerItem = document.createElement("div");
+        footerItem.className = "card-footer-item";
         var button1 = createButton("is-success", "fa fa-thumbs-o-up");
         var button2 = createButton("is-danger", "fa fa-thumbs-o-down");
         var button3 = createButton("is-info", "fa fa-retweet");
@@ -115,11 +118,12 @@ async function executeSearch(searchValue) {
         cardContent.appendChild(genreEl);
         cardContent.appendChild(imageEl);
         cardContent.appendChild(descrEl);
-        footer.appendChild(button1);
-        footer.appendChild(button2);
-        footer.appendChild(button3);  
+        footerItem.appendChild(button1);
+        footerItem.appendChild(button2);
+        footerItem.appendChild(button3);  
         card.appendChild(cardContent);
         card.appendChild(footer);
+        footer.appendChild(footerItem);
         resultsArea.appendChild(card);
         mainResults.appendChild(resultsArea);  
 
