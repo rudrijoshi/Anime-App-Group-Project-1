@@ -1,0 +1,70 @@
+header {
+    background-color: #D63A3A;
+    color: white;
+    padding: 10px 0px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 80px;
+    padding-bottom: 5px;
+}
+
+h1:hover {
+    text-decoration: underline;
+}
+
+#nav {
+    padding: 10px 10px 10px 10px;
+}
+
+input[type=text] {
+    width: 200px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    /* padding: 12px 20px 12px 40px; */
+    transition: width 0.3s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 15%;
+}
+
+input[type=button] {
+    background-color: #D63A3A;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#magnifying-glass {
+    padding-left: 5px;
+}
+
+#search-button {
+    background-color: #D63A3A;
+    color: white;
+    margin-top: 5px;
+}
+
+#search-history {
+    width: 7%;
+    display: block;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url(/assets/anime-digimon-minimalism-character-wallpaper.jpg);
+    background-position: fixed;
+}
