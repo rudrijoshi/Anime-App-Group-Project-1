@@ -79,6 +79,8 @@ async function executeSearch(searchValue) {
         var mainResults = document.getElementById('main-body');
         mainResults.innerHTML = "";
        
+        for (let i = 0; i < data.data.length; i++) {
+            console.log(i);
 
         var resultsArea = document.createElement("div")
         resultsArea.className = "column";
@@ -88,22 +90,22 @@ async function executeSearch(searchValue) {
         cardContent.className = "card-content";
         var titleEl = document.createElement("h2");
         titleEl.className = "title";
-        titleEl.textContent = data.data[0].title;
+        titleEl.textContent = data.data[i].title;
 
         var episodeEl = document.createElement("h3");
         episodeEl.className = "subtitle";
-        episodeEl.textContent = "Number of episodes" + " " + data.data[0].episodes;
+        episodeEl.textContent = "Number of episodes" + " " + data.data[i].episodes;
 
         var genreEl = document.createElement("p");
         genreEl.className = "col-12 col-md-9 p-3";
-        genreEl.textContent = data.data[0].genres[0];
+        genreEl.textContent = data.data[i].genres[0];
 
         var imageEl = document.createElement("img");
-        imageEl.setAttribute("src", data.data[0].image);
+        imageEl.setAttribute("src", data.data[i].image);
 
         var descrEl = document.createElement('p');
         descrEl.className = "desc"
-        descrEl.textContent = data.data[0].synopsis;
+        descrEl.textContent = data.data[i].synopsis;
 
         var footer = document.createElement("footer");
         footer.className = "card-footer";
@@ -126,16 +128,16 @@ async function executeSearch(searchValue) {
         footer.appendChild(footerItem);
         resultsArea.appendChild(card);
         mainResults.appendChild(resultsArea);  
-
-        var sentences = data.data[0].synopsis.split(/[.]/);
+       
+        var sentences = data.data[i].synopsis.split(/[.]/);
         var limitedSynopsis = sentences.slice(0, 3).join('. ');
         descrEl.innerHTML = limitedSynopsis + ".Read More...";
         populateSearchHistory()
-
+       }
     } catch (error) {
         console.error(error);
     }
-
+    
 
 }
 
