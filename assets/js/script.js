@@ -14,6 +14,25 @@ async function getAnimeList() {
     const response = await fetch(request);
     const data = await response.json();
     console.log(data);
+    var titleEl = document.querySelector('.title');
+    titleEl.textContent =  data.data[0].title;
+
+    var episodeEl = document.querySelector('.subtitle');
+    episodeEl.textContent = "Number of episodes" + " " + data.data[0].episodes;
+
+    var bodyEl = document.querySelector("#result-input");
+    bodyEl.textContent = data.data[0].genres[0];
+
+    var imageEl = document.querySelector("#result-image");
+    imageEl.setAttribute("src", data.data[0].image);
+    
+    var descrEl = document.querySelector('#desc');
+    descrEl.innerHTML = data.data[0].synopsis;
+
+    var sentences = data.data[0].synopsis.split(/[.]/);
+    var limitedSynopsis = sentences.slice(0,3).join('. ');
+    descrEl.innerHTML = limitedSynopsis + ".Read More...";
+
 }
 
 async function getAnimeQuote() {
