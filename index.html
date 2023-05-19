@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime App</title>
+    <!-- Below are all of our linked files and third party APIs.-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a0063087d9.js" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js" defer></script>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
@@ -20,6 +21,7 @@
 
 <body>
 
+    <!-- This is the header and nav section, which includes our randomly generated quote and input field as well as search and clear buttons.-->
     <header>
         <h1 id="title">🕊﴿Animé App Title﴾🕊</h1>
         <br>
@@ -38,20 +40,26 @@
             </div>
             <button id="clear-button">Clear Results</button>
         </form>
-
     </nav>
+
+    <!--This is our main section of the webpage. There aren't too many tags visible here because most of them render using JavaScript. -->
     <main>
         <div class="columns" id="search-results-text"><u>Search Results:</u>
             <br>
             <aside class="btn-group-vertical" id="search-history"></aside>
-            <section id="main-body">
-                
-                
-            </section>
+            <section id="main-body"></section>
         </div>
     </main>
 
-    <figure>>(っ◔◡◔)っ ♥ bye ♥</figure>
+    <!--This our footer section which credits the server side APIs and links to our github accounts.-->
+    <footer id="footer-block">
+        <h3 id="footer-credit">Powered by AnimeDB and 10000+ Anime Quotes</h3>
+        <h3 id="names-links"> &copy; <a href="https://github.com/sunderfire" id="names1">Griffin Pelletier</a>, <a
+                href="https://github.com/rudrijoshi" id="names2">Rudri Joshi</a>, and <a
+                href="https://github.com/jrtvick" id="names3">Tyler Vick</a> - 2023 </h3>
+        <p id="bye">>(っ◔◡◔)っ ♥ Thank You ♥</p>
+    </footer>
+
 
 </body>
 

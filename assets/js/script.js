@@ -28,11 +28,15 @@ function createButton(className, iconClass) {
     icon.className = iconClass;
     button.appendChild(icon);
     return button;
-  }
-  
+}
+
 //Execute search function
 //Api fetch
 async function executeSearch(searchValue) {
+
+    if (searchValue.trim() === "") {
+        return;
+    }
 
     const animeSearchHistory = JSON.parse(localStorage.getItem('animeSearchHistory'))
 
@@ -73,74 +77,68 @@ async function executeSearch(searchValue) {
 
         var mainResults = document.getElementById('main-body');
         mainResults.innerHTML = "";
-       
+
         for (let i = 0; i < data.data.length; i++) {
             console.log(i);
 
-        var resultsArea = document.createElement("div")
-        resultsArea.className = "column";
+            var resultsArea = document.createElement("div")
+            resultsArea.className = "column";
 
-        var cardLink = document.createElement("a");
-        cardLink.href = data.data[i].link;
-        cardLink.className = "card-link";
-        resultsArea.addEventListener("click", function(event) {
-            event.stopPropagation();
-            window.location.href = data.data[i].link;
-        });
-        
-        var card = document.createElement("div");
-        card.className = "card";
-        
-        var cardContent = document.createElement("div");
-        cardContent.className = "card-content";
-        var titleEl = document.createElement("h2");
-        titleEl.className = "title";
-        titleEl.textContent = data.data[i].title;
+            var cardLink = document.createElement("a");
+            cardLink.href = data.data[i].link;
+            cardLink.className = "card-link";
+            resultsArea.addEventListener("click", function (event) {
+                event.stopPropagation();
+                window.location.href = data.data[i].link;
+            });
 
-        var episodeEl = document.createElement("h3");
-        episodeEl.className = "subtitle";
-        episodeEl.textContent = "Number of episodes:" + " " + data.data[i].episodes;
+            var card = document.createElement("div");
+            card.className = "card";
 
-        var genreEl = document.createElement("p");
-        genreEl.className = "col-12 col-md-9 p-3";
-        genreEl.textContent = "Genre: " + data.data[i].genres[0];
+            var cardContent = document.createElement("div");
+            cardContent.className = "card-content";
+            var titleEl = document.createElement("h2");
+            titleEl.className = "title";
+            titleEl.textContent = data.data[i].title;
 
-        var imageEl = document.createElement("img");
-        imageEl.setAttribute("src", data.data[i].image);
+            var episodeEl = document.createElement("h3");
+            episodeEl.className = "subtitle";
+            episodeEl.textContent = "Number of episodes:" + " " + data.data[i].episodes;
 
-        var descrEl = document.createElement('p');
-        descrEl.className = "desc"
-        descrEl.textContent = data.data[i].synopsis;
+            var genreEl = document.createElement("p");
+            genreEl.className = "col-12 col-md-9 p-3";
+            genreEl.textContent = "Genre: " + data.data[i].genres[0];
 
-        var footer = document.createElement("footer");
-        footer.className = "card-footer";
-        var footerItem = document.createElement("div");
-        footerItem.className = "card-footer-item";
-        var button1 = createButton("is-success", "fa fa-thumbs-o-up");
-        var button2 = createButton("is-danger", "fa fa-thumbs-o-down");
-        var button3 = createButton("is-info", "fa fa-retweet");
+            var imageEl = document.createElement("img");
+            imageEl.setAttribute("src", data.data[i].image);
 
-        cardContent.appendChild(titleEl);
-        cardLink.appendChild(card);
-        cardContent.appendChild(episodeEl);
-        cardContent.appendChild(genreEl);
-        cardContent.appendChild(imageEl);
-        cardContent.appendChild(descrEl);
-        footerItem.appendChild(button1);
-        footerItem.appendChild(button2);
-        footerItem.appendChild(button3);  
-        card.appendChild(cardContent);
-        card.appendChild(footer);
-        footer.appendChild(footerItem);
-        resultsArea.appendChild(cardLink);
-        resultsArea.appendChild(card);
-        mainResults.appendChild(resultsArea);  
-       
-        var sentences = data.data[i].synopsis.split(/[.]/);
-        var limitedSynopsis = sentences.slice(0, 3).join('. ');
-        descrEl.innerHTML = limitedSynopsis + ".Read More...";
-        populateSearchHistory()
-       }
+            var descrEl = document.createElement('p');
+            descrEl.className = "desc"
+            descrEl.textContent = data.data[i].synopsis;
+
+            var footer = document.createElement("footer");
+            footer.className = "card-footer";
+            var footerItem = document.createElement("div");
+            footerItem.className = "card-footer-item";
+
+            cardContent.appendChild(titleEl);
+            cardLink.appendChild(card);
+            cardContent.appendChild(episodeEl);
+            cardContent.appendChild(genreEl);
+            cardContent.appendChild(imageEl);
+            cardContent.appendChild(descrEl);
+            card.appendChild(cardContent);
+            card.appendChild(footer);
+            footer.appendChild(footerItem);
+            resultsArea.appendChild(cardLink);
+            resultsArea.appendChild(card);
+            mainResults.appendChild(resultsArea);
+
+            var sentences = data.data[i].synopsis.split(/[.]/);
+            var limitedSynopsis = sentences.slice(0, 3).join('. ');
+            descrEl.innerHTML = limitedSynopsis + ".Read More...";
+            populateSearchHistory()
+        }
     } catch (error) {
         console.error(error);
     }
@@ -166,23 +164,23 @@ function populateSearchHistory() {
 //Function to clear local storage search history
 function clearSearchHistory() {
     var animeSearchHistory = JSON.parse(localStorage.getItem('animeSearchHistory'));
-  
+
     if (animeSearchHistory) {
-      animeSearchHistory.splice(0);
-      localStorage.setItem('animeSearchHistory', JSON.stringify(animeSearchHistory));
-      searchHistoryEle.innerHTML = '';
+        animeSearchHistory.splice(0);
+        localStorage.setItem('animeSearchHistory', JSON.stringify(animeSearchHistory));
+        searchHistoryEle.innerHTML = '';
     }
-  }
+}
 
 
 //Event Listeners
 //Function so that search executes with Enter
-searchFieldEle.addEventListener("keydown", function(event) {
+searchFieldEle.addEventListener("keydown", function (event) {
     if (event.keyCode === 13) {
-      event.preventDefault();
-      executeSearch(searchFieldEle.value)
+        event.preventDefault();
+        executeSearch(searchFieldEle.value)
     }
-  });
+});
 
 
 //Search click event listener
