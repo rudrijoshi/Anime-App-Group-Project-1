@@ -5,37 +5,21 @@ var searchFieldEle = document.getElementById("search-field");
 var quote = document.getElementById("quote-field")
 var searchHistoryEle = document.getElementById("search-history")
 
+//Function to capitalise first letter of search input
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-async function getAnimeList() {
-    var request = `https://anime-db.p.rapidapi.com/anime?page=1&size=1&rapidapi-key=${apiKey}`;
-    const response = await fetch(request);
-    const data = await response.json();
-    console.log(data);
-}
-
+//Function to generate and display random anime quote
 async function getAnimeQuote() {
-    var request = `https://10000-anime-quotes-with-pagination-support.p.rapidapi.com/rapidHandler/random?rapidapi-key=${apiKey}`;
-    // var request = `https://cors-anywhere.herokuapp.com/https://10000-anime-quotes-with-pagination-support.p.rapidapi.com/rapidHandler/random?rapidapi-key=${apiKey}`;
+    var request = `https://cors-anywhere.herokuapp.com/https://10000-anime-quotes-with-pagination-support.p.rapidapi.com/rapidHandler/random?rapidapi-key=${apiKey}`;
     const response = await fetch(request);
     const data = await response.json();
     console.log(data);
     quote.textContent = ('"' + data.quote + '"' + " Anime: " + data.animename)
 }
 
-searchFieldEle.addEventListener("keydown", function(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      executeSearch(searchFieldEle.value)
-    }
-  });
-
-searchButtonEle.addEventListener("click", () => {
-    executeSearch(searchFieldEle.value)
-})
-
+//Button creation function
 function createButton(className, iconClass) {
     const button = document.createElement('a');
     button.href = '#';
@@ -46,7 +30,8 @@ function createButton(className, iconClass) {
     return button;
   }
   
-
+//Execute search function
+//Api fetch
 async function executeSearch(searchValue) {
 
     const animeSearchHistory = JSON.parse(localStorage.getItem('animeSearchHistory'))
@@ -83,6 +68,7 @@ async function executeSearch(searchValue) {
             localStorage.setItem('animeSearchHistory', JSON.stringify([searchValue]))
         }
 
+        //Result Card generation
         searchFieldEle.value = "";
 
         var mainResults = document.getElementById('main-body');
@@ -93,8 +79,18 @@ async function executeSearch(searchValue) {
 
         var resultsArea = document.createElement("div")
         resultsArea.className = "column";
+
+        var cardLink = document.createElement("a");
+        cardLink.href = data.data[i].link;
+        cardLink.className = "card-link";
+        resultsArea.addEventListener("click", function(event) {
+            event.stopPropagation();
+            window.location.href = data.data[i].link;
+        });
+        
         var card = document.createElement("div");
         card.className = "card";
+        
         var cardContent = document.createElement("div");
         cardContent.className = "card-content";
         var titleEl = document.createElement("h2");
@@ -125,6 +121,7 @@ async function executeSearch(searchValue) {
         var button3 = createButton("is-info", "fa fa-retweet");
 
         cardContent.appendChild(titleEl);
+        cardLink.appendChild(card);
         cardContent.appendChild(episodeEl);
         cardContent.appendChild(genreEl);
         cardContent.appendChild(imageEl);
@@ -135,6 +132,7 @@ async function executeSearch(searchValue) {
         card.appendChild(cardContent);
         card.appendChild(footer);
         footer.appendChild(footerItem);
+        resultsArea.appendChild(cardLink);
         resultsArea.appendChild(card);
         mainResults.appendChild(resultsArea);  
        
@@ -146,11 +144,9 @@ async function executeSearch(searchValue) {
     } catch (error) {
         console.error(error);
     }
-    
-
 }
 
-
+//Function to create search history buttons
 function populateSearchHistory() {
     if (localStorage.getItem('animeSearchHistory')) {
         searchHistoryEle.innerHTML = ''
@@ -167,7 +163,7 @@ function populateSearchHistory() {
     }
 }
 
-
+//Function to clear local storage search history
 function clearSearchHistory() {
     var animeSearchHistory = JSON.parse(localStorage.getItem('animeSearchHistory'));
   
@@ -179,9 +175,25 @@ function clearSearchHistory() {
   }
 
 
+//Event Listeners
+//Function so that search executes with Enter
+searchFieldEle.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      executeSearch(searchFieldEle.value)
+    }
+  });
+
+
+//Search click event listener
+searchButtonEle.addEventListener("click", () => {
+    executeSearch(searchFieldEle.value)
+})
+
+//Clear history button event listener
 var clearHistoryButton = document.querySelector("#clear-button");
 clearHistoryButton.addEventListener("click", clearSearchHistory);
 
+//Function calls
 populateSearchHistory()
-getAnimeList();
 getAnimeQuote();
