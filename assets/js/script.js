@@ -168,6 +168,19 @@ function populateSearchHistory() {
 }
 
 
+function clearSearchHistory() {
+    var animeSearchHistory = JSON.parse(localStorage.getItem('animeSearchHistory'));
+  
+    if (animeSearchHistory) {
+      animeSearchHistory.splice(0);
+      localStorage.setItem('animeSearchHistory', JSON.stringify(animeSearchHistory));
+      searchHistoryEle.innerHTML = '';
+    }
+  }
+
+
+var clearHistoryButton = document.querySelector("#clear-button");
+clearHistoryButton.addEventListener("click", clearSearchHistory);
 
 populateSearchHistory()
 getAnimeList();
