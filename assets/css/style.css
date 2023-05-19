@@ -1,5 +1,6 @@
+/* This styles the header to have a colourful gradient background with white font. */
 header {
-    background: linear-gradient(50deg,#8B9AEF 70%, rgb(5, 121, 167) 55%);
+    background: linear-gradient(50deg, #8B9AEF 70%, rgb(5, 121, 167) 55%);
     color: white;
     padding: 10px 0px;
 }
@@ -16,11 +17,17 @@ h1:hover {
     text-decoration: underline;
 }
 
-#nav {
-    padding: 10px 10px 10px 10px;
-    background: linear-gradient(50deg, rgb(5, 121, 167) 70%,  #8B9AEF 55%);
+#quote-field {
+    text-align: center;
 }
 
+/* This code styles the nav bar to be padded in an aesthetic way and the colour works with the header. */
+#nav {
+    padding: 10px 10px 10px 10px;
+    background: linear-gradient(50deg, rgb(5, 121, 167) 70%, #8B9AEF 55%);
+}
+
+/* Lines 31-70 style our input field as well as search and clear history buttons. We added some small styling to each to make them interactive and pop off the page. */
 input[type=text] {
     width: 200px;
     box-sizing: border-box;
@@ -56,18 +63,18 @@ input[type=button] {
     color: white;
     margin-top: 5px;
 }
+
 #clear-button {
-    background-color:rgb(159, 78, 197);
+    background-color: rgb(159, 78, 197);
     color: white;
     margin-top: 5px;
 }
 
+/* Lines 73-92 represent the styling for our search results section. We styled the buttons to appear vertically inline using a grid display. */
 #search-history {
     width: 10vw;
     display: grid;
     padding-left: 10px;
-    /* align-items: center; */
-    /* margin-bottom: 5px; */
     grid-template-columns: auto;
     grid-gap: 5px;
     min-height: 10vh;
@@ -75,85 +82,56 @@ input[type=button] {
 }
 
 aside button {
-    background-color:aqua;
+    background-color: aqua;
 }
 
 #search-results-text {
     padding-left: 17px;
     padding-top: 17px;
-    font-weight:bolder;
-    
+    font-weight: bolder;
+    border-right: 2px solid #000;
 }
 
+/* Lines 95-145 represent the most important styling for the webpage, as this code is used to style the main section. 
+We have a background image, and cards that render upon searching. We've styled them with hover and background gradient for the cards. */
 main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* min-width: 200; */
     background-image: url(../images/anime-digimon-minimalism-character-wallpaper.jpg);
     background-position: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed; 
+    background-attachment: fixed;
 }
 
 #main-body {
     height: 100%;
     width: 100%;
     display: grid;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     justify-content: space-evenly;
     padding-right: 20px;
-    grid-template-columns:auto auto auto;
-    grid-template-rows:auto auto auto;
-    grid-gap: 10px;
-    align-self:flex-start;
-}
-
-.card-footer-item {
-    display:flex;
-    justify-content:space-between;
-    justify-items: center;
-
-    
-    margin-left: auto;
-    margin-right: auto;
-    width: 190%;
-}
-.card-footer {
-    display: grid;
-    /* grid-template-columns: auto; */
     grid-template-columns: auto auto auto;
-    grid-column-end: auto;
-}
-
-hr {
-height: 2px;
-width: 100%;
-background: #000;
-}
-
-
-#search-results-text{
-    border-right: 2px solid #000;
-    /* width: 15%; */
-    /* display: flex;
-    flex-direction: row; */
-
+    grid-template-rows: auto auto auto;
+    grid-gap: 10px;
+    align-self: flex-start;
 }
 
 .card {
     width: 100%;
     height: 100%;
-    background: linear-gradient(50deg,rgb(72, 128, 248) 50%,rgb(242, 252, 105) 90%);
-    flex-grow: 1; 
+    background: linear-gradient(50deg, rgb(103, 148, 247) 50%, rgb(242, 252, 105) 90%);
+    flex-grow: 1;
+
 }
 
 .card:hover {
     box-shadow: 0px 0px 100px 0px hotpink;
     transition: color .7s ease-in-out;
     box-shadow: .7s ease-in-out;
+    cursor: grab;
 }
 
 img {
@@ -162,9 +140,38 @@ img {
     margin-right: auto;
     width: 50%;
 }
+
 .subtitle {
     font-weight: bold;
 }
-#quote-field {
-    text-align:center;
+
+/* The final lines of code below represent our styling for the footer section at the bottom of the page.
+We have centred the text as well as given our linked a tags some hover and color styling. */
+#footer-block {
+    width: 100%;
+    text-align: center;
+    background-color: #8B9AEF;
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+#names1,
+#names2,
+#names3 {
+    color: white !important;
+}
+
+#names1:hover {
+    cursor: crosshair;
+    color: yellow !important;
+}
+
+#names2:hover {
+    cursor: crosshair;
+    color: yellow !important;
+}
+
+#names3:hover {
+    cursor: crosshair;
+    color: yellow !important;
 }
