@@ -12,7 +12,7 @@ Because of an unavoidable cors issue, in order to view the quote on a the live g
 
 In order to use the website, the user can put a anime name or genre into the search field.  The search results will yield back the 9 most popular results displayed in cards generated on the main section of the website.  Past result buttons will also generate so the user can quickly search for anything they have searched for in the past.  There is also a clear results button that will clear the local storage search results and main results.  A random quote from anime is generated every time the page reloads.
 
-![alt text](assets/images/animeappscreenshot.png)
+![alt text](assets/images/fullizeanimeappscreenshot.png)
 
 Link to live page: https://rudrijoshi.github.io/Anime-App-Group-Project-1/
 
@@ -30,6 +30,8 @@ https://rapidapi.com/brian.rofiq/api/anime-db
 
 Shoutout to tutors from UofTor Coding Bootcamp:
 Dane Shrewsbury
+Jude Clark
+Geronimo Perez
 
 And our teacher and SA:
 Sal Hobbi and Mark Alfano
