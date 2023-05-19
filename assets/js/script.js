@@ -103,11 +103,11 @@ async function executeSearch(searchValue) {
 
         var episodeEl = document.createElement("h3");
         episodeEl.className = "subtitle";
-        episodeEl.textContent = "Number of episodes" + " " + data.data[i].episodes;
+        episodeEl.textContent = "Number of episodes:" + " " + data.data[i].episodes;
 
         var genreEl = document.createElement("p");
         genreEl.className = "col-12 col-md-9 p-3";
-        genreEl.textContent = data.data[i].genres[0];
+        genreEl.textContent = "Genre: " + data.data[i].genres[0];
 
         var imageEl = document.createElement("img");
         imageEl.setAttribute("src", data.data[i].image);
