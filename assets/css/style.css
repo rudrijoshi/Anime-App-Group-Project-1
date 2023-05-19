@@ -1,5 +1,5 @@
 header {
-    background: linear-gradient(50deg,#8e64f0 70%, rgb(5, 121, 167) 55%);
+    background: linear-gradient(50deg,#8B9AEF 70%, rgb(5, 121, 167) 55%);
     color: white;
     padding: 10px 0px;
 }
@@ -18,7 +18,7 @@ h1:hover {
 
 #nav {
     padding: 10px 10px 10px 10px;
-    background: linear-gradient(50deg, rgb(5, 121, 167) 70%,  #8e64f0 55%);
+    background: linear-gradient(50deg, rgb(5, 121, 167) 70%,  #8B9AEF 55%);
 }
 
 input[type=text] {
@@ -52,7 +52,12 @@ input[type=button] {
 }
 
 #search-button {
-    background-color: #D63A3A;
+    background-color: #600672;
+    color: white;
+    margin-top: 5px;
+}
+#clear-button {
+    background-color:rgb(159, 78, 197);
     color: white;
     margin-top: 5px;
 }
@@ -69,6 +74,9 @@ input[type=button] {
     align-content: start;
 }
 
+aside button {
+    background-color:aqua;
+}
 
 #search-results-text {
     padding-left: 17px;
@@ -105,7 +113,19 @@ main {
 
 .card-footer-item {
     display:flex;
-    justify-content:space-evenly;
+    justify-content:space-between;
+    justify-items: center;
+
+    
+    margin-left: auto;
+    margin-right: auto;
+    width: 190%;
+}
+.card-footer {
+    display: grid;
+    /* grid-template-columns: auto; */
+    grid-template-columns: auto auto auto;
+    grid-column-end: auto;
 }
 
 hr {
@@ -115,7 +135,7 @@ background: #000;
 }
 
 
- #search-results-text{
+#search-results-text{
     border-right: 2px solid #000;
     /* width: 15%; */
     /* display: flex;
@@ -123,4 +143,28 @@ background: #000;
 
 }
 
+.card {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(50deg,rgb(72, 128, 248) 50%,rgb(242, 252, 105) 90%);
+    flex-grow: 1; 
+}
 
+.card:hover {
+    box-shadow: 0px 0px 100px 0px hotpink;
+    transition: color .7s ease-in-out;
+    box-shadow: .7s ease-in-out;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.subtitle {
+    font-weight: bold;
+}
+#quote-field {
+    text-align:center;
+}
