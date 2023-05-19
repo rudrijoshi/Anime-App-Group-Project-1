@@ -1,5 +1,5 @@
 header {
-    background-color: #D63A3A;
+    background: linear-gradient(50deg,#8e64f0 70%, rgb(5, 121, 167) 55%);
     color: white;
     padding: 10px 0px;
 }
@@ -9,6 +9,7 @@ h1 {
     color: white;
     font-size: 80px;
     padding-bottom: 5px;
+    font-family: 'Bungee Shade', cursive;
 }
 
 h1:hover {
@@ -17,6 +18,7 @@ h1:hover {
 
 #nav {
     padding: 10px 10px 10px 10px;
+    background: linear-gradient(50deg, rgb(5, 121, 167) 70%,  #8e64f0 55%);
 }
 
 input[type=text] {
@@ -56,12 +58,23 @@ input[type=button] {
 }
 
 #search-history {
-    width: 7%;
-    display: block;
+    width: 10vw;
+    display: grid;
+    padding-left: 10px;
+    /* align-items: center; */
+    /* margin-bottom: 5px; */
+    grid-template-columns: auto;
+    grid-gap: 5px;
+    min-height: 10vh;
+    align-content: start;
 }
 
+
 #search-results-text {
-    padding-left: 20px;
+    padding-left: 17px;
+    padding-top: 17px;
+    font-weight:bolder;
+    
 }
 
 main {
@@ -69,22 +82,45 @@ main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    /* min-width: 200; */
     background-image: url(../images/anime-digimon-minimalism-character-wallpaper.jpg);
     background-position: fixed;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed; 
 }
 
 #main-body {
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    flex-wrap: wrap; 
     justify-content: space-evenly;
     padding-right: 20px;
+    grid-template-columns:auto auto auto;
+    grid-template-rows:auto auto auto;
+    grid-gap: 10px;
+    align-self:flex-start;
 }
 
 .card-footer-item {
     display:flex;
     justify-content:space-evenly;
 }
+
+hr {
+height: 2px;
+width: 100%;
+background: #000;
+}
+
+
+ #search-results-text{
+    border-right: 2px solid #000;
+    /* width: 15%; */
+    /* display: flex;
+    flex-direction: row; */
+
+}
+
+
