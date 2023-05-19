@@ -62,7 +62,7 @@ async function executeSearch(searchValue) {
 
     const searchParams = new URLSearchParams({
         page: '1',
-        size: '10',
+        size: '9',
         search: searchValue,
         sortBy: 'ranking',
         sortOrder: 'asc'
