@@ -14,7 +14,7 @@ In order to use the website, the user can put a anime name or genre into the sea
 
 ![alt text](assets/images/fullizeanimeappscreenshot.png)
 
-Link to live page: https://rudrijoshi.github.io/Anime-App-Group-Project-1/
+Link to live page: https://rudrijoshi.github.io/Anime_App/
 
 ## Credits
 
